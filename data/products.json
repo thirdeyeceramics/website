@@ -1,0 +1,50 @@
+[{
+    "id": "1",
+    "name": "Face Vase",
+    "price": 85.00,
+    "image": "/img/portfolio/utilitarian/face_jug_2.jpg",
+    "description": "Beautiful high fire face vase inspired by folk pottery creations. It is best used for decorative purposes or for planting. It is dishwasher and microwave safe. ",
+    "url": "http://snipcart-hugo.netlify.com"
+}, {
+    "id": "2",
+    "name": "Speckle Vase",
+    "description": "Beautiful handmade vase by Carey at Third Eye Ceramics. The vase is microwave and dishwasher safe. It is best used as a decorative item or for planting.",
+    "price": 25.00,
+    "image": "/img/portfolio/utilitarian/speckle_vase.jpg",
+    "url": "http://snipcart-hugo.netlify.com"
+}, {
+    "id": "3",
+    "name": "Periwinkle Mug",
+    "price": 12.00,
+    "image": "/img/portfolio/utilitarian/periwinkle_cup_1.jpg",
+    "description": "Beautiful handmade mugs with a fantastic periwinkle color. The items are dishwasher and microwave safe. Some size may vary but all hold about 10 oz of liquid which is perfect for coffee or tea. The items are one of a kind made by hand.",
+    "url": "http://snipcart-hugo.netlify.com"
+}, {
+    "id": "4",
+    "name": "Deep Blue Sea Vase",
+    "description": "This beautiful vase is great for any home style and makes a great gift for any occasion. The vase is sturdy but light in weight. It is microwave and dishwasher safe. Better used for decorative purposes or plants.  It is a nice large size vase. The height is about 12 inches while the width/depth is about 6 inches. ",
+    "price": 45.00,
+    "image": "/img/portfolio/utilitarian/blue_x_vase.jpg",
+    "url": "http://snipcart-hugo.netlify.com"
+}, {
+    "id": "5",
+    "name": "Waterfall Mug",
+    "description": "Beautiful Wheel-thrown cup by Carey at Third Eye Ceramics. It is microwave and dishwasher safe.  This is a small mug that holds about 7-8 oz of liquid.",
+    "price": 12.00,
+    "image": "/img/portfolio/utilitarian/waterfall_cup.jpg",
+    "url": "http://snipcart-hugo.netlify.com"
+}, {
+    "id": "6",
+    "name": "Seaweed Vase",
+    "description": "This is a beautiful hand-thrown vase by Carey from Third Eye Ceramics. This vase is a collection of colors inspired by the ocean and its reflective depth. The vase is microwave and dishwasher safe. This product is best used however for decorative purposes or as a planter.",
+    "price": 45.00,
+    "image": "/img/portfolio/utilitarian/seaweed_vase.jpg",
+    "url": "http://snipcart-hugo.netlify.com"
+}, {
+    "id": "7",
+    "name": "Mellow Yellow Flower Vase",
+    "description": "Beautiful mid-fire mellow yellow vase. The bright yellow color that mixes well with any house design. Dishwasher and microwave safe item. It is best used as a decorative item for flowers or other things. Makes a great gift for any occasion.",
+    "price": 35.00,
+    "image": "/img/portfolio/utilitarian/mellow_yellow_flower_vase.jpg",
+    "url": "http://snipcart-hugo.netlify.com"
+}]

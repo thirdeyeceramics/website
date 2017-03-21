@@ -1,0 +1,14 @@
+// ---- Social Icons ----
+
+.social-icons {
+	color: $gray-light;
+	display: inline-block;
+	list-style: none;
+	li {
+		display: inline;
+	}
+	li + li {
+		padding-left: 0.5em;
+	}
+	padding-left: 0;
+}

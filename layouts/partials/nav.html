@@ -1,0 +1,28 @@
+<!-- three item nav -->
+<header class="{{ if .IsHome }}home abs{{ end }}">
+    <div class="container-wide">
+        <div class="site-title">
+            <a href="/">
+                <h1 class="brand-title">
+                  <img src="/img/logo.png" height="25">
+                </h1>
+            </a>
+        </div>
+        <div class="menu-container">
+            <ul class="menu">
+                {{- range .Site.Menus.main -}}
+                    {{- if eq ( .Pre | plainify ) "hero" -}}
+                        <li class="menu-item">
+                            <a class="" href="{{.URL}}">
+                                <span>{{ .Name }}</span>
+                            </a>
+                        </li>
+                    {{- end -}}
+                {{- end -}}
+            </ul>
+            <a class="toggle-button">
+                <span class="fa fa-bars" aria-hidden="true"></span>
+            </a>
+        </div>
+    </div>
+</header>

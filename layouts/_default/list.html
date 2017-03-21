@@ -1,0 +1,37 @@
+{{ define "main" }}
+
+<div class="container">
+
+    <h1>{{ .Title }}</h1>
+
+    {{- $.Scratch.Set "hasSeries" false -}}
+    {{- range .Data.Pages -}}
+        {{- if .Params.series -}}
+            {{- $.Scratch.Set "hasSeries" true -}}
+        {{- end -}}
+    {{- end -}}
+
+    {{- if ($.Scratch.Get "hasSeries") -}}
+        {{/* When content is a member of a series, group by series */}}
+        {{- range (.Paginate (.Data.Pages.GroupByParam "series").Reverse).PageGroups -}}
+            <h2>{{ .Key }}</h2>
+            <ul>
+                {{- range .Pages.ByDate -}}
+                    {{ .Render "li" }}
+                {{- end -}}
+            </ul>
+        {{- end -}}
+    {{- else -}}
+        {{/* Otherwise, don't group at all */}}
+        <ul>
+            {{- range .Data.Pages.ByDate.Reverse -}}
+                {{ .Render "li" }}
+            {{- end -}}
+        </ul>
+    {{- end -}}
+
+    {{ template "_internal/pagination.html" . }}
+
+</div>
+
+{{ end }}

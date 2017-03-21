@@ -1,0 +1,232 @@
+baseurl = "http://thirdeyeceramics.com/"
+languageCode = "en-us"
+googleAnalytics = "UA-94094011-1"
+#baseurl = "../"
+#canonifyurls = "false"
+#uglyURLS = "true"
+#relativeURLS = "true"
+#uglyhome = "/index.html"
+#ugly = ".html"
+
+title = "Third Eye Ceramics"
+
+preserveTaxonomyNames = true
+
+[taxonomies]
+genre = "genres" # drama, musical, etc
+series = "series" # a run of plays; formatted as year1-year2
+# actor = "actors"
+playwright = "playwrights"
+director = "directors"
+musician = "musicians"
+lyricist = "lyricists"
+choreographer = "choreographers"
+# "stage manager" = "stage managers"
+# "lighting designer" = "lighting designers"
+# "set designer" = "set designers"
+# "costume designer" = "costume designers"
+# "sound designer" = "sound designers"
+award = "awards"
+venue = "venues"
+
+[params]
+    [params.address]
+        street = ""
+        city = "Augusta"
+        state = "GA"
+        zip = "30909"
+        phone = "706.726.9892"
+        email = "thirdeyeceramics@gmail.com"
+    [params.social]
+        github          = "thirdeyeceramics"
+        facebook        = "thirdeyeceramics"
+        facebook_app_id = "653495568194974"
+        twitter         = "thirdeyeceramic"
+        twitter_domain  = "" # This domain shows in twitter cards as "View on `twitter_domain`"
+        googleplus      = ""
+        pinterest       = "tamagachikilla"
+        instagram       = "thirdeyeceramics"
+        youtube         = "UCHUgE7KH1bGDoPRiHv1H1VA"
+        linkedin        = "thirdeyeceramics"
+# [params]
+#     currentSeries = "exhibitions"
+
+[[menu.main]]
+    name = "Exhibitions" # - Plays and events listed chronologically – like ATF’s site is fine – denoting which is a show and which is a special event - Sub-pages for each show
+    url = "/season/" # dynamically set to the current series
+    pre = "hero" # hack -- using pre to indicate that this is a hero menu item
+    weight = 100
+# [[menu.main]]
+#   name = "Tickets"
+#   url = "/tickets/"
+#   weight = 200
+# [[menu.main]]
+#   name = "Education" #(page and link for each of the following)
+#   url = "/education/"
+#   identifier = "education"
+#   weight = 300
+# [[menu.main]]
+#   name = "Broadway Kids"
+#   url = "/education/broadway-kids/"
+#   parent = "education"
+#   weight = 310
+# [[menu.main]]
+#   name = "DramatiKIDS"
+#   url = "/education/dramatikids/"
+#   parent = "education"
+#   weight = 320
+# [[menu.main]]
+#   name = "Laugh Factory"
+#   url = "/education/laugh-factory/"
+#   parent = "education"
+#   weight = 330
+# [[menu.main]]
+#   name = "Musical Theater Camp"
+#   url = "/education/musical-theater-camp/"
+#   parent = "education"
+#   weight = 340
+# [[menu.main]]
+#   name = "After School Edventures"
+#   url = "/education/after-school-edventures/"
+#   parent = "education"
+#   weight = 350
+# [[menu.main]]
+#   name = "MiniPlay Playwriting Contest"
+#   url = "/education/miniplay-playwriting-contest/"
+#   parent = "education"
+#   weight = 360
+[[menu.main]]
+    name = "Portfolio"
+    url = "/portfolio/"
+    pre = "hero" # hack -- using pre to indicate that this is a hero menu item
+    weight = 200
+[[menu.main]]
+    name = "Pot People"
+    url = "/portfolio/pot-people"
+    parent = "Portfolio"
+    weight = 210
+[[menu.main]]
+    name = "Homeless Homes"
+    url = "/portfolio/homeless-homes"
+    parent = "Portfolio"
+    weight = 220
+[[menu.main]]
+    name = "Utilitarian"
+    url = "/portfolio/utilitarian"
+    parent = "Portfolio"
+    weight = 230
+# [[menu.main]]
+#   name = "Photo Gallery"
+#   url = "/photo-gallery/"
+#   weight = 500
+# [[menu.main]]
+#   name = "Get Involved"
+#   url = "/get-involved/"
+#   identifier = "get-involved"
+#   pre = "hero" # hack -- using pre to indicate that this is a hero menu item
+#   weight = 600
+# [[menu.main]]
+#   name = "Volunteer"
+#   url = "/get-involved/#volunteer"
+#   parent = "get-involved"
+#   weight = 610
+# [[menu.main]]
+#   name = "Auditions"
+#   url = "/get-involved/#auditions"
+#   parent = "get-involved"
+#   weight = 620
+# [[menu.main]]
+#   name = "Technical Opportunities"
+#   url = "/get-involved/#technical-opportunities"
+#   parent = "get-involved"
+#   weight = 630
+# [[menu.main]]
+#   name = "Support"
+#   url = "/support/"
+#   identifier = "support"
+#   weight = 700
+# [[menu.main]]
+#     name = "Individual"
+#     url = "/support/#individual"
+#     parent = "support"
+#     weight = 710
+# [[menu.main]]
+#     name = "Corporate"
+#     url = "/support/#corporate"
+#     parent = "support"
+#     weight = 720
+# [[menu.main]]
+#   name = "Facility Rentals"
+#   url = "/facility-rentals/"
+#   weight = 800
+[[menu.main]]
+    name = "Artist Bio"
+    url = "/about/"
+    identifier = "about"
+    pre = "hero" # hack -- using pre to indicate that this is a hero menu item    
+    weight = 300
+[[menu.main]]
+    name = "Artist Statement"
+    url = "/statement/"
+    parent = "about"
+    weight = 310
+[[menu.main]]
+    name = "Resume"
+    url = "/resume/"
+    parent = "about"
+    weight = 320
+[[menu.main]]
+    name = "Shop"
+    pre = "hero" # hack -- using pre to indicate that this is a hero menu item   
+    url = "/shop/"
+    weight = 400
+#[[menu.main]]
+#    name = "Staff"
+#    url = "/about/#staff"
+#    parent = "about"
+#    weight = 910
+#[[menu.main]]
+#    name = "Board of Directors"
+#    url = "/about/#board-of-directors"
+#    parent = "about"
+#    weight = 920
+#[[menu.main]]
+#    name = "Director's Circle"
+#    url = "/about/#director-s-circle"
+#    parent = "about"
+#    weight = 930
+# [[menu.main]]
+#   name = "Mission & History"
+#   url = "/about/#mission-history"
+#   parent = "about"
+#   weight = 940
+# [[menu.main]]
+#   name = "Past Productions"
+#   url = "/about/#past-productions"
+#   parent = "about"
+#   weight = 950
+# [[menu.main]]
+#   name = "Arts Fair on the Square"
+#   url = "/about/#arts-fair-on-the-square"
+#   parent = "about"
+#   weight = 960
+# [[menu.main]]
+#   name = "Facility Rentals"
+#   url = "/facility-rentals/"
+#   pre = "foot"
+#   weight = 1000
+#[[menu.main]]
+#   name = "Privacy Policy"
+#   url = "/privacy-policy/"
+#   pre = "foot"
+#   weight = 1100
+#[[menu.main]]
+#   name = "Terms & Conditions"
+#   url = "/terms-and-conditions/"
+#   pre = "foot"
+#   weight = 1200
+[[menu.main]]
+    name = "Contact Us"
+    url = "/contact"
+    pre = "foot"
+    weight = 500

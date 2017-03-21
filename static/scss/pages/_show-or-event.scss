@@ -1,0 +1,32 @@
+// -- Show Pages Template Styles ---
+
+// "show_or_event/full.html"
+
+.show-or-event-full {
+	margin-top: 3em;
+	img {
+		width: 100%;
+		height: auto;
+	}
+	h1 {
+		margin-top: 0;
+	}
+	.meta {
+		p {
+			margin-bottom: 0;
+		}
+		p:last-of-type {
+			margin-bottom: 1em;
+		}
+	}
+	.times {
+		background-color: $gray-light;
+		padding: 0.5em;
+	}
+	#fb_share_button {
+		padding-right: 0.5em;
+	}
+	.pull-right {
+		float: right;
+	}
+}

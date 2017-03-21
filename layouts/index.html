@@ -1,0 +1,190 @@
+{{/* current series is the latest */}}
+{{- $currentSeries := (index .Site.Taxonomies.series.Alphabetical.Reverse 0) -}}
+{{/* current show is one with Now between start and end */}}
+{{/* initialize with the latest show and event */}}
+{{- range first 1 (where $currentSeries.Pages.ByDate.Reverse "Section" "eq" "show") -}}
+    {{- $.Scratch.SetInMap "heros" "100" . -}}
+{{- end -}}
+{{- range first 1 (where $currentSeries.Pages.ByDate.Reverse "Section" "eq" "event") -}}
+    {{- $.Scratch.SetInMap "heros" "200" . -}}
+{{- end -}}
+{{/* next show is the earliest one where the start date is in the future */}}
+{{- range where $currentSeries.Pages.ByDate "Section" "in" (slice "show" "event") -}}
+    {{/* show starts on the first date in the showtimes array */}}
+    {{- $start := (time (index .Params.showtimes 0).time ) -}}
+    {{/* show ends on the last date in the showtimes array */}}
+    {{- $end := (time (index .Params.showtimes (sub (len .Params.showtimes) 1) ).time ) -}}
+    {{- if gt $end.Unix $.Now.Unix -}}
+        {{/* it's either running now or it's in the future */}}
+        {{- if eq .Section "show" -}}
+            {{/* show weight is always 100 */}}
+            {{- if lt $start.Unix (time (index (index ($.Scratch.Get "heros") "100").Params.showtimes 0).time ).Unix -}}
+                {{- $.Scratch.SetInMap "heros" "100" . -}}
+            {{- end -}}
+        {{- else -}}
+            {{/* event weight is always 200 */}}
+            {{- if lt $start.Unix (time (index (index ($.Scratch.Get "heros") "200").Params.showtimes 0).time ).Unix -}}
+                {{- $.Scratch.SetInMap "heros" "200" . -}}
+            {{- end -}}
+        {{- end -}}
+    {{- end -}}
+{{- end -}}
+
+{{/* by default, ordered by weight then by date */}}
+{{- range $index, $page := where (where .Data.Pages "Section" "special") ".Params.is_active" true -}}
+    {{- if $page.Params.hero_weight }}
+        {{- $.Scratch.SetInMap "heros" ($page.Params.hero_weight | string) . -}}
+    {{- else -}}
+        {{/* this weight should be 300, 400, 500 as we loop */}}
+        {{- $weight := (add (mul (add $index 1) 100) 200) -}}
+        {{- $.Scratch.SetInMap "heros" ($weight | string) . -}}
+    {{- end -}}
+{{- end -}}
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+    {{with .Site.LanguageCode}} xml:lang="{{.}}" lang="{{.}}"{{end}}
+    itemscope itemtype="http://schema.org/{{- if .IsPage -}}Article{{- else -}}WebPage{{- end -}}">
+
+<head>
+    {{- partial "head.html" . -}}
+</head>
+
+<body id="{{- if .IsPage -}}page{{- else -}}node{{- end -}}-{{ .Title | urlize }}">
+
+{{- partial "nav_hidden.html" . -}}
+
+<div id="panel">
+
+    {{- partial "nav.html" . -}}
+
+    <!-- slider -->
+    <div class="slider-wrap">
+        <div class="slider" id="slider">
+
+            {{- range $index, $page := ($.Scratch.GetSortedMapValues "heros") -}}
+                {{- $heroPaths := (partial "heros.html" $page) -}}
+                {{- if $heroPaths -}}
+                    <div class="slide"
+                        style="background-image: url({{ partial "hero.html" $page }})"
+                        data-heros="{{ $heroPaths }}">
+                        <span class="slide-text">
+                            <span class="img-text-background">
+                                {{- with $page.Params.hero_title -}}
+                                    {{- if $page.Params.hero_subtitle -}}
+                                        {{ (printf "%s: %s" . $page.Params.hero_subtitle) | markdownify }}
+                                    {{- else -}}
+                                        {{ . | markdownify }}
+                                    {{- end -}}
+                                {{- else -}}
+                                    {{- with $page.Params.subtitle -}}
+                                        {{ (printf "%s: %s" $page.Title .) | markdownify }}
+                                    {{- else -}}
+                                        {{ $page.Title | markdownify }}
+                                    {{- end -}}
+                                {{- end -}}
+                            </span>
+
+                            {{/* set a prompt for call to action */}}
+                            {{- $.Scratch.Set "prompt" nil -}}
+                            {{- if eq $page.Section "show" -}}
+                                {{/* get the start time of this show/event */}}
+                                {{- $start := (time (index $page.Params.showtimes 0).time ) -}}
+                                {{- if lt $start.Unix $.Now.Unix -}}
+                                    {{- $.Scratch.Set "prompt" "Performing Now" -}}
+                                {{- else -}}
+                                    {{- $.Scratch.Set "prompt" (printf "Opens %s %s" (dateFormat "Jan" $start) (humanize (dateFormat "2" $start))) -}}
+                                {{- end -}}
+                            {{- end -}}
+
+                            {{- if and $page.Params.hero_call_to_action $page.Params.hero_call_to_action_link -}}
+                                <br>
+                                <a class="button" href="{{ $page.Params.hero_call_to_action_link }}">
+                                    {{- with ($.Scratch.Get "prompt") }}
+                                        {{ . }} -
+                                    {{- end }}
+                                    {{ $page.Params.hero_call_to_action | markdownify }}
+                                </a>
+                            {{- else if ne $page.Section "special" -}}
+                                <br>
+                                <a class="button" href="{{ $page.RelPermalink }}">
+                                    {{- with ($.Scratch.Get "prompt") }}
+                                        {{ . }} -
+                                    {{- end }}
+                                    View Details
+                                </a>
+                            {{- else -}}
+                                <br>
+                                <a class="button" href="/series/exhibitions/">
+                                    View My Upcoming Exhibitions
+                                </a>
+                            {{- end -}}
+                        </span>
+                    </div>
+                {{- end -}}
+            {{- end -}}
+
+        </div>
+        <nav class="slider-nav" id="slider-nav">
+            <span class="fa fa-chevron-left"
+                id="control-left" aria-hidden="true"></span>
+            <span class="fa fa-chevron-down"
+                id="control-down" aria-hidden="true"></span>
+            <span class="fa fa-chevron-right"
+                id="control-right" aria-hidden="true"></span>
+        </nav>
+    </div>
+
+    <!-- call-to-action -->
+    <div class="container">
+        <div class="jumbo-header">
+            <div class="row">
+                <div class="col-sm-12">
+                    {{ .Content }}
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- join us image sequence -->
+    <div class="container img-sequence">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                <div class="volunteer">
+                    <h2>
+                        <span class="img-text-background">
+                            <a href="/shop/">Shop Online</a>
+                        </span>
+                    </h2>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                <div class="education">
+                    <h2>
+                        <span class="img-text-background">
+                            <a href="/portfolio/">Check Out My Portfolio</a>
+                        </span>
+                    </h2>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <div class="donate">
+                    <h2>
+                        <span class="img-text-background">
+                            <a href="/support/">Support Third Eye Ceramics</a>
+                        </span>
+                    </h2>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {{ partial "foot.html" . }}
+
+</div>
+
+{{ partial "body_script.html" . }}
+
+</body>
+</html>

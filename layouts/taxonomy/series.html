@@ -1,0 +1,21 @@
+{{ define "main" }}
+
+<div class="container">
+
+    <div class="jumbo-header dark">
+        <h1>
+            {{ printf "%s %s" .Title "" }}
+        </h1>
+    </div>
+
+    <div class="season container-flex">
+        {{ .Content }}
+
+        {{- range .Data.Pages.ByDate.Reverse -}}
+            {{ .Render "brief" }}
+        {{- end -}}
+    </div>
+
+</div>
+
+{{- end -}}
